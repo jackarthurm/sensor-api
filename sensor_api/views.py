@@ -33,7 +33,7 @@ class ContinuousSensorViewSet(
     serializer_class = ContinuousSensorSerializer
 
 
-class ContinuousSensorFilter(FilterSet):
+class ContinuousSensorFilterSet(FilterSet):
     sensor = CharFilter(field_name="sensor__name", lookup_expr='iexact')
 
 
@@ -41,9 +41,9 @@ class ContinuousSensorMeasurementView(ListModelMixin, GenericAPIView):
 
     queryset = ContinuousSensorMeasurement.objects.all()
     serializer_class = ContinuousSensorMeasurementSerializer
-    filterset_class = ContinuousSensorFilter
+    filterset_class = ContinuousSensorFilterSet
 
-    def get(self, request: Request, *args, **kwargs):
+    def get(self, request: Request, *args, **kwargs) -> Response:
         return self.list(request, *args, **kwargs)
 
     def patch(self, request: Request) -> Response:

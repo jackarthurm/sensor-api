@@ -30,7 +30,11 @@ class ContinuousSensorSerializer(ModelSerializer):
             "unit",
         )
 
-    unit = StringEnumField(_forward_unit_mapping, _reverse_unit_mapping, source="unit_type")
+    unit = StringEnumField(
+        _forward_unit_mapping,
+        _reverse_unit_mapping,
+        source="unit_type"
+    )
 
 
 class ContinuousSensorMeasurementSerializer(ModelSerializer):
