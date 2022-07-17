@@ -5,8 +5,6 @@ Implemented with a typical application architecture: DRF API views -> DRF serial
 
 Includes a very basic unit conversion framework which ensures all measurement data is persisted to the database in SI units.
 
-Includes a bulk data endpoint for creating multiple measurements at once.
-
 ## Getting started
 
 - Set the environment variable `DATABASE_URL` to a database connection string, for example `postgres://postgres:password@127.0.0.1:5432/dbname`
