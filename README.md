@@ -9,6 +9,6 @@ Includes a bulk data endpoint for creating multiple measurements at once.
 
 ## Getting started
 
-Set the environment variable `DATABASE_URL` to a database connection string, for example postgres://postgres:password@127.0.0.1:5432/dbname
-Run the Django development server with `python manage.py runserver`
-Run the test suite with `python manage.py test`
+- Set the environment variable `DATABASE_URL` to a database connection string, for example `postgres://postgres:password@127.0.0.1:5432/dbname`
+- Run the Django development server with `python manage.py runserver`
+- Run the test suite with `python manage.py test`
