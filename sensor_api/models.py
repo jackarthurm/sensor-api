@@ -40,7 +40,7 @@ class ContinuousSensor(Model):
     _meta: Meta
 
     id: UUID = UUIDField(primary_key=True, default=uuid4, editable=False)
-    name: Optional[str] = CharField(verbose_name="sensor name", max_length=256, unique=True)
+    name: Optional[str] = CharField(max_length=256, unique=True)
     unit_type: Optional[UnitType] = PositiveSmallIntegerField(
         verbose_name="measurement unit",
         choices=UnitType.choices
