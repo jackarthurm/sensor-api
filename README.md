@@ -20,5 +20,5 @@ Includes a very basic unit conversion framework which ensures all measurement da
 
 - Navigate to `/api/sensor` to GET the list of sensors and POST new sensors
 - Navigate to `/api/sensor/<sensor ID>` to GET a sensor
-- Navigate to `/api/data for the list of measurements, to POST a new measurement or to PATCH a new batch of measurements to the list
-- Navigate to `/api/data?sensor=<sensor name> for the list of measurements, filtered by sensor
+- Navigate to `/api/data` for the list of measurements, to POST a new measurement or to PATCH a new batch of measurements to the list
+- Navigate to `/api/data?sensor=<sensor name>` for the list of measurements, filtered by sensor
