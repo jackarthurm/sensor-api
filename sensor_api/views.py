@@ -66,32 +66,3 @@ class ContinuousSensorMeasurementView(ListModelMixin, GenericAPIView):
         sz.save()
 
         return Response(status=status.HTTP_201_CREATED, data=sz.data)
-
-
-class ContinuousSensorMeasurementViewSet(
-    CreateModelMixin,
-    ListModelMixin,
-    GenericViewSet
-):
-    queryset = ContinuousSensorMeasurement.objects.all()
-    serializer_class = ContinuousSensorMeasurementSerializer
-    filterset_class = ContinuousSensorFilter
-
-    def list(self, request: Request, *args, **kwargs) -> Response:
-
-        if request.method == "PATCH":
-            return self.bulk_update(request)
-
-        return super(ContinuousSensorMeasurementViewSet, self).list(request, *args, **kwargs)
-
-    def bulk_update(self, request: Request) -> Response:
-
-        sz = ContinuousSensorMeasurementSerializer(data=request.data, many=True)
-        sz.is_valid(raise_exception=True)
-        sz.save()
-
-        return Response(
-            status=status.HTTP_201_CREATED,
-            data=sz.data,
-            headers=self.get_success_headers(sz.data)
-        )
