@@ -65,7 +65,7 @@ class TestContinuousSensorViewSet(APITestCase):
         )
         ContinuousSensor.objects.create(
             name="test sensor 2",
-            unit_type=UnitType.Celsius
+            unit_type=UnitType.Fahrenheit
         )
 
         response: Response = self.client.get("/api/sensor/")
@@ -74,7 +74,11 @@ class TestContinuousSensorViewSet(APITestCase):
 
         self.assertEqual(2, response.data["count"])
 
-        # TODO: Check the data in the list too
+        self.assertEqual("test sensor 1", response.data["results"][0]["name"])
+        self.assertEqual("Celsius", response.data["results"][0]["unit"])
+
+        self.assertEqual("test sensor 2", response.data["results"][1]["name"])
+        self.assertEqual("Fahrenheit", response.data["results"][1]["unit"])
 
 
 class TestContinuousSensorMeasurementViewSet(APITestCase):
@@ -113,24 +117,30 @@ class TestContinuousSensorMeasurementViewSet(APITestCase):
 
     def test_list_measurements(self):
 
-        sensor: ContinuousSensor = ContinuousSensor.objects.create(
-            name="Main Bearing Temperature",
+        sensor_1: ContinuousSensor = ContinuousSensor.objects.create(
+            name="test sensor 1",
             unit_type=UnitType.Celsius
         )
 
-        ContinuousSensorMeasurement.objects.create(sensor=sensor, value=42)
-        ContinuousSensorMeasurement.objects.create(sensor=sensor, value=84)
+        sensor_2: ContinuousSensor = ContinuousSensor.objects.create(
+            name="test sensor 2",
+            unit_type=UnitType.Celsius
+        )
+
+        ContinuousSensorMeasurement.objects.create(sensor=sensor_1, value=42 + 273.15)
+        ContinuousSensorMeasurement.objects.create(sensor=sensor_2, value=84 + 273.15)
 
         response: Response = self.client.get("/api/data/")
 
         self.assertEqual(status.HTTP_200_OK, response.status_code)
 
-        self.assertEqual(
-            2,
-            response.data.get("count")
-        )
+        self.assertEqual(2, response.data["count"])
 
-        # TODO: Check the data in the list too
+        self.assertEqual("test sensor 1", response.data["results"][0]["sensor"])
+        self.assertEqual(42, response.data["results"][0]["value"])
+
+        self.assertEqual("test sensor 2", response.data["results"][1]["sensor"])
+        self.assertEqual(84, response.data["results"][1]["value"])
 
     def test_put_request_is_disallowed(self):
 
