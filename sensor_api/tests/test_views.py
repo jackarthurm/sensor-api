@@ -162,20 +162,18 @@ class TestContinuousSensorMeasurementViewSet(APITestCase):
 
         response: Response = self.client.patch(
             "/api/data/",
-            data={
-                "bulk_data": [
-                    {
-                        "date": "2022-04-27 12:13",
-                        "sensor": "Main Bearing Temperature",
-                        "value": "12.0"
-                    },
-                    {
-                        "date": "2023-04-27 12:13",
-                        "sensor": "Main Bearing Temperature",
-                        "value": 42
-                    },
-                ]
-            },
+            data= [
+                {
+                    "date": "2022-04-27 12:13",
+                    "sensor": "Main Bearing Temperature",
+                    "value": "12.0"
+                },
+                {
+                    "date": "2023-04-27 12:13",
+                    "sensor": "Main Bearing Temperature",
+                    "value": 42
+                },
+            ],
             format="json"
         )
 
@@ -183,7 +181,7 @@ class TestContinuousSensorMeasurementViewSet(APITestCase):
 
         self.assertEqual(
             2,
-            len(response.data["bulk_data"])
+            len(response.data)
         )
 
         self.assertEqual(
