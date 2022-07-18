@@ -34,7 +34,7 @@ class ContinuousSensorViewSet(
     serializer_class = ContinuousSensorSerializer
 
 
-class ContinuousSensorFilterSet(FilterSet):
+class ContinuousSensorMeasurementFilterSet(FilterSet):
     sensor = CharFilter(field_name="sensor__name", lookup_expr='iexact')
 
 
@@ -42,7 +42,7 @@ class ContinuousSensorMeasurementView(ListAPIView, CreateAPIView):
 
     queryset = ContinuousSensorMeasurement.objects.all()
     serializer_class = ContinuousSensorMeasurementSerializer
-    filterset_class = ContinuousSensorFilterSet
+    filterset_class = ContinuousSensorMeasurementFilterSet
 
     def patch(self, request: Request) -> Response:
         """Creates a list of sensor resources"""
