@@ -12,7 +12,7 @@ class StringEnumField(Field):
     """A simple serializer field which uses a forward and
     a reverse mapping to serialize enum values to string
     and vice-versa
-    Implemented as case-insensitive
+    The reverse mapping is implemented as case-insensitive
     """
 
     default_error_messages = {

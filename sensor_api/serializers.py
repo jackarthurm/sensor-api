@@ -1,3 +1,5 @@
+from typing import Final
+
 from rest_framework.fields import (
     DateTimeField,
     FloatField,
@@ -15,11 +17,11 @@ from sensor_api.unit_definitions import UnitType
 
 class ContinuousSensorSerializer(ModelSerializer):
 
-    _forward_unit_mapping = dict(UnitType.choices)
+    _forward_unit_mapping: Final[dict[UnitType, str]] = dict(UnitType.choices)
 
-    _reverse_unit_mapping = {v: k for k, v in UnitType.choices}
-    _reverse_unit_mapping.update(
-        {"Celcius": UnitType.Celsius}  # Add support for a misspelling, per requirements
+    _reverse_unit_mapping: dict[str, UnitType] = (
+        {v: k for k, v in UnitType.choices}
+        | {"Celcius": UnitType.Celsius}  # Add support for a misspelling, per requirements
     )
 
     class Meta:

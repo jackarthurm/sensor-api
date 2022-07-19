@@ -162,7 +162,7 @@ class TestContinuousSensorMeasurementViewSet(APITestCase):
 
         response: Response = self.client.patch(
             "/api/data/",
-            data= [
+            data=[
                 {
                     "date": "2022-04-27 12:13",
                     "sensor": "Main Bearing Temperature",
