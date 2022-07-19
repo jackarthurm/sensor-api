@@ -10,10 +10,10 @@ from sensor_api.unit import (
 
 
 class UnitType(IntegerChoices):
-    Celsius = 1
-    Kelvin = 2
-    Fahrenheit = 3
-    Hertz = 4
+    Celsius = (1, "Celsius")
+    Kelvin = (2, "Kelvin")
+    Fahrenheit = (3, "Fahrenheit")
+    Hertz = (4, "Hertz")
 
 
 UNIT_DEFINITIONS: Mapping[UnitType, Unit] = {
